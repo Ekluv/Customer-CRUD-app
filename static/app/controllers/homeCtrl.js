@@ -4,7 +4,6 @@ angular.module('myapp')
 
         function getCustomersList() {
             apiService.getCustomers().then((customers) => {
-                console.log(customers);
                 $scope.customers = customers;
             }, (err) => {
                 window.console.log(err);
