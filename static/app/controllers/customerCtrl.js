@@ -8,6 +8,12 @@ angular.module('myapp')
             $scope.customer = {
                 addresses: []
             };
+            $scope.address = {
+                flat: '',
+                street: '',
+                state: '',
+                pincode: ''
+            };
             if (pageType === 'edit') {
                 getCustomerData(customerId);
             }
@@ -20,12 +26,25 @@ angular.module('myapp')
                 $scope.customer = customer;
                 $scope.customer.dob = new Date(customer.dob);
             }, (err) => {
-                window.console.log(err);
+                window.console.log(err);  // TODO: error handling
             });
         }
 
+        function validateAddress(address) {
+            var addressErrors = {};
+            Object.keys(address).forEach(function(element, index) {
+                if (!address[element]) {
+                    addressErrors[element] = true;
+                }
+            });
+            return addressErrors;
+        }
+
         $scope.addAddress = () => {
-            window.console.log($scope.address);
+            $scope.addressErrors = validateAddress($scope.address); // validate address
+            if (Object.keys($scope.addressErrors).length) {
+                return;
+            }
             var address = JSON.parse(JSON.stringify($scope.address));
             $scope.customer.addresses.push(address);
         };
@@ -34,10 +53,9 @@ angular.module('myapp')
             var data = JSON.parse(JSON.stringify($scope.customer));
             var promise = customerId ? apiService.updateCustomer(data): apiService.createCustomer(data);
             promise.then((response) => {
-                console.log(response);
                 $state.go('home');
             }, (err) => {
-                console.log(err);
+                window.console.log(err);  // TODO: error handling
             });
         };
 

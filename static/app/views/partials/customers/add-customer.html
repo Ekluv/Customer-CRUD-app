@@ -3,27 +3,29 @@
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" class="form-control" name="name" placeholder="Customer Name" ng-model="customer.name" required>
-      <span class="mandatory" ng-show="customerForm.name.$error.required && !customerForm.name.$pristine">Required</span>
+      <span class="mandatory" ng-show="customerForm.name.$error.required && !customerForm.name.$pristine">* Required</span>
     </div>
     <div class="form-group">
       <label for="mobile">Mobile:</label>
-      <input type="text" class="form-control" name="mobile" placeholder="Customer Mobile No" ng-model="customer.mobile" required>
-      <span class="mandatory" ng-show="customerForm.mobile.$error.required && !customerForm.mobile.$pristine">Required</span>
+      <input type="text" class="form-control" name="mobile" placeholder="Customer Mobile No" ng-model="customer.mobile" required ng-pattern="/^[0-9]{10,10}$/">
+      <span class="mandatory" ng-show="customerForm.mobile.$error.required && !customerForm.mobile.$pristine">* Required</span>
+      <span class="mandatory" ng-show="customerForm.mobile.$error.pattern && !customerForm.mobile.$pristine">Not a valid Mobile no</span>
     </div>
     <div class="form-group">
       <label for="phone">Phone:</label>
-      <input type="text" class="form-control" name="phone" placeholder="Customer phone no" ng-model="customer.phone" required>
-      <span class="mandatory" ng-show="customerForm.phone.$error.required && !customerForm.phone.$pristine">Required</span>
+      <input type="text" class="form-control" name="phone" placeholder="Customer phone no" ng-model="customer.phone" required ng-pattern="/^\d+$/">
+      <span class="mandatory" ng-show="customerForm.phone.$error.required && !customerForm.phone.$pristine">* Required</span>
+      <span class="mandatory" ng-show="customerForm.phone.$error.pattern && !customerForm.phone.$pristine">Not a valid Phone no</span>
     </div>
     <div class="form-group">
       <label for="dob">DOB:</label>
       <input type="date" class="form-control" name="dob" placeholder="Customer DOB" ng-model="customer.dob" required>
-      <span class="mandatory" ng-show="customerForm.dob.$error.required && !customerForm.dob.$pristine">Required</span>
+      <span class="mandatory" ng-show="customerForm.dob.$error.required && !customerForm.dob.$pristine">* Required</span>
     </div>
     <div class="form-group">
       <label for="email">Email:</label>
       <input type="email" class="form-control" name="email" placeholder="Customer email" ng-model="customer.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
-      <span class="mandatory" ng-show="customerForm.email.$error.required && !customerForm.email.$pristine">Required</span>
+      <span class="mandatory" ng-show="customerForm.email.$error.required && !customerForm.email.$pristine">* Required</span>
       <span class="mandatory" ng-show="customerForm.email.$error.pattern && !customerForm.email.$pristine">Not a valid email</span>
     </div>
 
@@ -42,24 +44,28 @@
             <label class="control-label col-sm-2" for="flat">Flat:</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" name="flat" placeholder="Flat No" ng-model="address.flat">
+              <span class="mandatory" ng-show="addressErrors.flat">* Required</span>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-sm-2" for="street">Street:</label>
             <div class="col-sm-8"> 
               <input type="text" class="form-control" name="street" placeholder="Street No" ng-model="address.street">
+              <span class="mandatory" ng-show="addressErrors.street">* Required</span>
             </div>
           </div>
           <div class="form-group"> 
             <label class="control-label col-sm-2" for="state">State:</label>
             <div class="col-sm-8"> 
               <input type="text" class="form-control" name="state" placeholder="State" ng-model="address.state">
+              <span class="mandatory" ng-show="addressErrors.state">* Required</span>
             </div>
           </div>
           <div class="form-group"> 
             <label class="control-label col-sm-2" for="pincode">Pincode:</label>
             <div class="col-sm-8"> 
               <input type="number" class="form-control" name="pincode" placeholder="Pincode" ng-model="address.pincode">
+              <span class="mandatory" ng-show="addressErrors.pincode">* Required</span>
             </div>
           </div>
           <div class="form-group"> 
@@ -69,7 +75,7 @@
           </div>
         </div>
     </div>
-    <button ng-click="createOrUpdateCustomer()" class="btn btn-default" ng-disabled="!customerForm.$valid || !customer.addresses.length">Submit</button>
+    <button ng-click="createOrUpdateCustomer()" class="btn btn-primary" ng-disabled="!customerForm.$valid || !customer.addresses.length">Submit</button>
   </form>
 
 </div>
