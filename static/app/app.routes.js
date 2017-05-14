@@ -1,9 +1,8 @@
-angular.module("app.routes", [ 'ngRoute', 'ui.router'])
-    .config(['$locationProvider', '$stateProvider','$urlRouterProvider', '$routeProvider', function($locationProvider, $stateProvider, $urlRouterProvider, $routeProvider) {
-        
+angular.module("app.routes", ['ngRoute', 'ui.router'])
+    .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', '$routeProvider', function($locationProvider, $stateProvider, $urlRouterProvider, $routeProvider) {
+
         $urlRouterProvider.otherwise('/');
-        // console.log($locationProvider)
-        
+
         $stateProvider
             .state('home', {
                 url: '/',
@@ -25,6 +24,4 @@ angular.module("app.routes", [ 'ngRoute', 'ui.router'])
                 templateUrl: '/static/app/views/partials/report/report-home.html',
                 controller: 'reportCtrl',
             });
-        // $locationProvider.html5mode(true);
     }]);
-      

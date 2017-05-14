@@ -1,11 +1,11 @@
 /*jshint esversion: 6 */
 const mongoose = require('mongoose'),
-      config = require('./config.js'),
-      faker = require('faker'),
-      MongoClient = require('mongodb').MongoClient;
+    config = require('./config.js'),
+    faker = require('faker'),
+    MongoClient = require('mongodb').MongoClient;
 
 
-const NO_OF_BILL_ENTRIES = 1000;
+const NO_OF_BILL_ENTRIES = 2;
 
 
 /**
@@ -15,7 +15,7 @@ const NO_OF_BILL_ENTRIES = 1000;
  */
 function createItems(count) {
     var items = [];
-    for(let i=0; i<count; i++) {
+    for (let i = 0; i < count; i++) {
         items.push({
             name: faker.commerce.product(),
             quantity: Math.floor(Math.random() * 10) + 1, // random no between 1 and 10
@@ -29,7 +29,14 @@ function createItems(count) {
 /**
  * function constructor
  */
-function Bill({billNumber, billDate, items, discount, tax, customerId}) {
+function Bill({
+    billNumber,
+    billDate,
+    items,
+    discount,
+    tax,
+    customerId
+}) {
     this.billNumber = billNumber;
     this.billDate = billDate;
     this.items = items;
@@ -38,7 +45,7 @@ function Bill({billNumber, billDate, items, discount, tax, customerId}) {
     this.customerId = customerId;
 }
 
-Bill.prototype.toString = function(){
+Bill.prototype.toString = function() {
     return `<${JSON.stringify(this.items[0])} - Customer: ${this.customerId}>`;
 };
 
@@ -52,7 +59,7 @@ Bill.prototype.toString = function(){
 function createBill(billNumber, customerId) {
     var items = createItems(10); // get 10 items
     var data = {
-        billNumber:  billNumber,
+        billNumber: billNumber,
         billDate: faker.date.past(),
         tax: 15,
         discount: Math.floor(Math.random() * 25) + 1, // random no between 1 and 25
@@ -70,9 +77,14 @@ function createBill(billNumber, customerId) {
  */
 function getNextBillNumber(db) {
     return new Promise((resolve, reject) => {
-        db.collection('identitycounters').findOneAndUpdate({model: 'Bill'},
-              {$inc: {sequence_value: 1, count: 1}}
-           ).then(result => resolve(result.value.count), err => reject(err));
+        db.collection('identitycounters').findOneAndUpdate({
+            model: 'Bill'
+        }, {
+            $inc: {
+                sequence_value: 1,
+                count: 1
+            }
+        }).then(result => resolve(result.value.count), err => reject(err));
     });
 }
 
@@ -97,9 +109,9 @@ function getRandomCustomerId(ids) {
 function addBillToDb(db, customerId) {
     return new Promise((resolve, reject) => {
         getNextBillNumber(db).then((sequence) => {
-        var bill = createBill(sequence, customerId);
-        console.log('adding to db bill', bill.toString());
-        resolve(db.collection('bills').insert(bill));
+            var bill = createBill(sequence, customerId);
+            console.log('adding to db bill', bill.toString());
+            resolve(db.collection('bills').insert(bill));
         }, (err) => {
             reject(err);
         });
@@ -116,7 +128,7 @@ var migrateData = function(db) {
     db.collection('customers').find().toArray().then((customers) => {
         var ids = customers.map(customer => customer._id);
         var promises = [];
-        for(let i=0; i<NO_OF_BILL_ENTRIES; i++) {
+        for (let i = 0; i < NO_OF_BILL_ENTRIES; i++) {
             var random = getRandomCustomerId(ids);
             promises.push(addBillToDb(db, random));
         }
@@ -124,10 +136,10 @@ var migrateData = function(db) {
             console.log(results.length, 'bills added to db');
             db.close();
             process.exit();
-            }, (err) => {
-                console.log(err);
+        }, (err) => {
+            console.log(err);
         });
-        
+
     }, (err) => {
         console.log(err);
     });
@@ -135,7 +147,7 @@ var migrateData = function(db) {
 
 
 MongoClient.connect(config.database, function(err, db) {
-  
+
     console.log('Connected correctly to server');
     console.log('Please wait .....');
 

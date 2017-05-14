@@ -1,8 +1,8 @@
 /*jshint esversion: 6 */
 angular.module('myapp')
-    .controller('customerCtrl', ['$scope', '$state','$stateParams', 'apiService', function($scope, $state, $stateParams, apiService){
+    .controller('customerCtrl', ['$scope', '$state', '$stateParams', 'apiService', function($scope, $state, $stateParams, apiService) {
         var customerId = $stateParams.id;
-        var pageType =  customerId ? 'edit': 'add';     
+        var pageType = customerId ? 'edit' : 'add';
 
         function init() {
             $scope.customer = {
@@ -26,7 +26,7 @@ angular.module('myapp')
                 $scope.customer = customer;
                 $scope.customer.dob = new Date(customer.dob);
             }, (err) => {
-                window.console.log(err);  // TODO: error handling
+                window.console.log(err); // TODO: error handling
             });
         }
 
@@ -51,11 +51,11 @@ angular.module('myapp')
 
         $scope.createOrUpdateCustomer = () => {
             var data = JSON.parse(JSON.stringify($scope.customer));
-            var promise = customerId ? apiService.updateCustomer(data): apiService.createCustomer(data);
+            var promise = customerId ? apiService.updateCustomer(data) : apiService.createCustomer(data);
             promise.then((response) => {
                 $state.go('home');
             }, (err) => {
-                window.console.log(err);  // TODO: error handling
+                window.console.log(err); // TODO: error handling
             });
         };
 

@@ -9,7 +9,7 @@ require('./app/models/bill');
 const apiRouter = require('./app/routes/api/customer');
 
 mongoose.connect(config.database, (err) => {
-    if(err){
+    if (err) {
         console.log(err);
     }
 });
@@ -17,7 +17,9 @@ mongoose.connect(config.database, (err) => {
 const app = express();
 
 app.use('/static', express.static(__dirname + '/static'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
@@ -28,10 +30,9 @@ app.get('*', (req, res) => {
 });
 
 app.listen(config.port, (err) => {
-    if(err){
+    if (err) {
         console.log(err);
-    }
-    else {
+    } else {
         console.log('server started at 3000');
     }
 });

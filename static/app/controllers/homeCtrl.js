@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 angular.module('myapp')
-    .controller('homeCtrl', ['$scope', '$rootScope','$location', 'apiService', function($scope, $rootScope, $location, apiService){
+    .controller('homeCtrl', ['$scope', '$rootScope', '$location', 'apiService', function($scope, $rootScope, $location, apiService) {
 
         function getCustomersList() {
             apiService.getCustomers().then((customers) => {
@@ -24,11 +24,11 @@ angular.module('myapp')
 
 
     .filter('beautifyAddress', function() {
-  
+
         return function(address, optional1, optional2) {
 
             return address.flat + ', ' + address.street + ', ' + address.state + ' -' + address.pincode;
 
-  };
+        };
 
-});
+    });
