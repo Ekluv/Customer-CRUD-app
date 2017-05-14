@@ -5,7 +5,7 @@ const mongoose = require('mongoose'),
     MongoClient = require('mongodb').MongoClient;
 
 
-const NO_OF_BILL_ENTRIES = 2;
+const NO_OF_BILL_ENTRIES = 1000;
 
 
 /**
