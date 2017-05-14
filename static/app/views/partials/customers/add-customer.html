@@ -1,0 +1,75 @@
+<div class="col-sm-6 col-sm-offset-3">
+  <form name="customerForm" novalidate>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" name="name" placeholder="Customer Name" ng-model="customer.name" required>
+      <span class="mandatory" ng-show="customerForm.name.$error.required && !customerForm.name.$pristine">Required</span>
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile:</label>
+      <input type="text" class="form-control" name="mobile" placeholder="Customer Mobile No" ng-model="customer.mobile" required>
+      <span class="mandatory" ng-show="customerForm.mobile.$error.required && !customerForm.mobile.$pristine">Required</span>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input type="text" class="form-control" name="phone" placeholder="Customer phone no" ng-model="customer.phone" required>
+      <span class="mandatory" ng-show="customerForm.phone.$error.required && !customerForm.phone.$pristine">Required</span>
+    </div>
+    <div class="form-group">
+      <label for="dob">DOB:</label>
+      <input type="date" class="form-control" name="dob" placeholder="Customer DOB" ng-model="customer.dob" required>
+      <span class="mandatory" ng-show="customerForm.dob.$error.required && !customerForm.dob.$pristine">Required</span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" name="email" placeholder="Customer email" ng-model="customer.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required>
+      <span class="mandatory" ng-show="customerForm.email.$error.required && !customerForm.email.$pristine">Required</span>
+      <span class="mandatory" ng-show="customerForm.email.$error.pattern && !customerForm.email.$pristine">Not a valid email</span>
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <div ng-show="customer.addresses.length">
+        <label>Added address:</label>
+        <p ng-repeat="address in customer.addresses">
+          {{address.flat}}, {{address.street}}, {{address.state}}, {{address.pincode}}
+        </p>
+      </div>
+        
+        
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="flat">Flat:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="flat" placeholder="Flat No" ng-model="address.flat">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="street">Street:</label>
+            <div class="col-sm-8"> 
+              <input type="text" class="form-control" name="street" placeholder="Street No" ng-model="address.street">
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="control-label col-sm-2" for="state">State:</label>
+            <div class="col-sm-8"> 
+              <input type="text" class="form-control" name="state" placeholder="State" ng-model="address.state">
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="control-label col-sm-2" for="pincode">Pincode:</label>
+            <div class="col-sm-8"> 
+              <input type="number" class="form-control" name="pincode" placeholder="Pincode" ng-model="address.pincode">
+            </div>
+          </div>
+          <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+              <button ng-click="addAddress()" class="btn btn-default">Add Address</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <button ng-click="createOrUpdateCustomer()" class="btn btn-default" ng-disabled="!customerForm.$valid || !customer.addresses.length">Submit</button>
+  </form>
+
+</div>

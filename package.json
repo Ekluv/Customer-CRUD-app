@@ -1,0 +1,23 @@
+{
+  "name": "userstory",
+  "version": "1.0.0",
+  "description": "Customer CRUD",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ekluv",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "faker": "^3.1.0",
+    "mongodb": "^2.2.26",
+    "mongoose": "^4.4.19",
+    "mongoose-auto-increment": "^5.0.1",
+    "morgan": "^1.7.0"
+  },
+  "devDependencies": {
+    "node-inspector": "^0.12.8"
+  }
+}

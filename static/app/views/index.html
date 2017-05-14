@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+    <title>Ekluv App</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular-route.min.js"></script>
+    <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+    <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/angular-dialog-service/5.3.0/dialogs.min.js"></script>
+    
+    <script type="text/javascript" src="/static/app/app.js"></script>
+    <script type="text/javascript" src="/static/app/app.routes.js"></script>
+
+    <script type="text/javascript" src="/static/app/services/apiService.js"></script>
+    <script type="text/javascript" src="/static/app/services/constants.js"></script>
+    <script type="text/javascript" src="/static/app/controllers/homeCtrl.js"></script>
+    <script type="text/javascript" src="/static/app/controllers/customerCtrl.js"></script>
+    <script type="text/javascript" src="/static/app/controllers/reportCtrl.js"></script>
+    <meta charset="utf-8">   
+    <base href="/" />
+</head>
+<body>
+
+<div>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li ng-if="!isLoggedIn"><a href="#/login">Login</a></li>
+          <li ng-if="!isLoggedIn"><a href="#/signup">SignUp</a></li>
+          <li ng-if="isLoggedIn"><a href="">{{user.userName}}</a></li> 
+          <li ng-if="isLoggedIn" ng-click="logout()"><a href="#">Logout</a></li> 
+        </ul>
+      </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div ui-view></div>
+</div>
+<!-- Latest compiled and minified JavaScript -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+</body>
+</html>
