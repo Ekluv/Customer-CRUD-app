@@ -14,6 +14,7 @@
     <script type="text/javascript" src="/static/app/app.routes.js"></script>
 
     <script type="text/javascript" src="/static/app/services/apiService.js"></script>
+    <script type="text/javascript" src="/static/app/services/interceptors.js"></script>
     <script type="text/javascript" src="/static/app/services/constants.js"></script>
     <script type="text/javascript" src="/static/app/controllers/homeCtrl.js"></script>
     <script type="text/javascript" src="/static/app/controllers/customerCtrl.js"></script>
@@ -38,6 +39,10 @@
 
 <div class="container">
     <div ui-view></div>
+</div>
+
+<div class="loader" id="loader">
+    <i class="fa fa-circle-o-notch fa-spin"></i>
 </div>
 </body>
 </html>

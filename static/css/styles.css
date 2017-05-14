@@ -1,3 +1,27 @@
 .mandatory {
 	color: red;
 }
+
+.loader {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.56);
+}
+.loader i {
+  font-size: 5rem;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  color: #ddd;
+}
+
+.hide {
+	display: none;
+}
