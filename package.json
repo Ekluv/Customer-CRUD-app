@@ -1,5 +1,5 @@
 {
-  "name": "Customer CRUD",
+  "name": "CustomerCRUD",
   "version": "1.0.0",
   "description": "Customer CRUD",
   "main": "server.js",
