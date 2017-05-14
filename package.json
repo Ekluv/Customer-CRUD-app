@@ -1,5 +1,5 @@
 {
-  "name": "userstory",
+  "name": "Customer CRUD",
   "version": "1.0.0",
   "description": "Customer CRUD",
   "main": "server.js",
@@ -18,6 +18,6 @@
     "morgan": "^1.7.0"
   },
   "devDependencies": {
-    "node-inspector": "^0.12.8"
+    "nodemon": "^1.11.0"
   }
 }
